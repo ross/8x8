@@ -30,11 +30,14 @@ class Display(Thread):
 
         self._com_delay = 1 / 9600
 
-        self._data = [0x00] * 8
+        self.clear()
         self.reset()
 
     def set(self, data):
         self._data = data
+
+    def clear(self):
+        self._data = [0x00] * 8
 
     def run(self):
         self._running = True
@@ -142,6 +145,8 @@ for ch in ('Hello World!'):
     data.reverse()
     display.set(data)
     sleep(0.5)
+    display.clear()
+    sleep(0.1)
 
 print 'stop'
 display.stop()
